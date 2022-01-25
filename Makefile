@@ -24,11 +24,11 @@ populate:
 
 
 runtime: clean-remote setup ## Build the runtime artifact
-	(cd puppet-runtime; time bundle exec vanagon build agent-runtime-main debian-10-armhf $(REMOTE_HOST))
+	(cd puppet-runtime; time bundle exec vanagon build agent-runtime-main debian-11-armhf $(REMOTE_HOST))
 
 agent: clean-remote populate ## Build the puppet-agent
 	$(MAKE) clean-remote
-	(cd puppet-agent; time bundle exec vanagon build puppet-agent debian-10-armhf $(REMOTE_HOST))
+	(cd puppet-agent; time bundle exec vanagon build puppet-agent debian-11-armhf $(REMOTE_HOST))
 
 clean:
 
@@ -51,7 +51,7 @@ runtime-clone:
 
 agent-clone:
 	if [ ! -d puppet-agent ]; then \
-		git clone -o puppet http://github.com/puppetlabs/puppet-agent && cd puppet-agent && bundle ; fi
+		git clone -o stahnma http://github.com/stahnma/puppet-agent && cd puppet-agent && git checkout add-bullseye-armhf && bundle ; fi
 
 setup: vanagon-clone runtime-clone agent-clone ## Clone the projects needed to build
 
