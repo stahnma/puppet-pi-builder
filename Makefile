@@ -31,6 +31,7 @@ agent: clean-remote populate ## Build the puppet-agent
 	(cd puppet-agent; time bundle exec vanagon build puppet-agent debian-11-armhf $(REMOTE_HOST))
 
 clean:
+	rm -rf puppet-agent/vendor puppet-runtime/vendor vanagon/vendor
 
 artifact-clean: ## Remove artifact directories
 	rm -rf puppet-agent/output puppet-runtime/output
