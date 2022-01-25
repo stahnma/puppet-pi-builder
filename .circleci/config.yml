@@ -11,7 +11,7 @@ jobs:
       - checkout
       - run: pwd
       - run: ls
-      - run: echo "Hi I'm on Runners!"
-      - run: make fluffy
+      - run: echo "Attempting a remote vanagon build"
+      - run: time make package
       - store_artifacts:
-          path: /work/pkg
+          path: ./pkg
