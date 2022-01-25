@@ -7,6 +7,7 @@ NO_PXP_AGENT=true
 VANAGON_USE_MIRRORS=n
 VANAGON_LOCATION=file:///$(WORKDIR)/vanagon
 RUNTIME_VERSION=$(shell [ -e puppet-runtime/output/*.json ] && jq -r '.version' `ls -tr puppet-runtime/output/*.json` || echo "FALSE")
+GEM_HOME=./vendor
 
 help: ## This help
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST) | sort
