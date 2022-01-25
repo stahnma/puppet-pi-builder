@@ -39,7 +39,7 @@ clobber: ## Remove all checkouts of agent, runtime and vanagon (this is destruct
 	rm -rf puppet-agent puppet-runtime vanagon
 
 clean-remote: ## Clean remote machine you're building on
-	ssh StrictHostKeyChecking=no root@$(REMOTE_HOST) "rm -rf /opt/puppetlabs /var/tmp/tmp.* /etc/puppetlabs"
+	ssh -o StrictHostKeyChecking=no root@$(REMOTE_HOST) "rm -rf /opt/puppetlabs /var/tmp/tmp.* /etc/puppetlabs"
 
 vanagon-clone:
 	if [ ! -d vanagon ]; then \
@@ -60,4 +60,4 @@ package: setup runtime agent ## Build the whole agent package and place it local
 
 fluffy:
 	@echo "Everything is fluffy"
-	ssh StrictHostKeyChecking=no root@$(REMOTE_HOST) uptime
+	ssh -o StrictHostKeyChecking=no root@$(REMOTE_HOST) uptime
