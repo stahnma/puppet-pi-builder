@@ -26,6 +26,7 @@ runtime: clean-remote setup ## Build the runtime artifact
 	(cd puppet-runtime; time bundle exec vanagon build agent-runtime-main debian-10-armhf $(REMOTE_HOST))
 
 agent: clean-remote populate ## Build the puppet-agent
+	$(MAKE) clean-remote
 	(cd puppet-agent; time bundle exec vanagon build puppet-agent debian-10-armhf $(REMOTE_HOST))
 
 clean:
@@ -45,7 +46,7 @@ vanagon-clone:
 
 runtime-clone:
 	if [ ! -d puppet-runtime ]; then \
-		git clone -o stahnma https://github.com/stahnma/puppet-runtime && cd puppet-runtime && git checkout optional_boost_cpp && bundle ; fi
+		git clone -o stahnma https://github.com/stahnma/puppet-runtime && cd puppet-runtime && git checkout reduce_docs && bundle ; fi
 
 agent-clone:
 	if [ ! -d puppet-agent ]; then \
@@ -53,5 +54,9 @@ agent-clone:
 
 setup: vanagon-clone runtime-clone agent-clone ## Clone the projects needed to build
 
-package: runtime agent ## Build the whole agent package and place it locally
+package: setup runtime agent ## Build the whole agent package and place it locally
 	mv puppet-agent/output/deb ./pkg
+
+fluffy:
+	@echo "Everything is fluffy"
+	ssh root@$(REMOTE_HOST) uptime
