@@ -47,7 +47,7 @@ vanagon-clone:
 
 runtime-clone:
 	if [ ! -d puppet-runtime ]; then \
-		git clone -o stahnma https://github.com/stahnma/puppet-runtime && cd puppet-runtime && git checkout reduce_docs && bundle ; fi
+		git clone -o stahnma https://github.com/stahnma/puppet-runtime && cd puppet-runtime && git checkout add_bullseye_armhf && bundle ; fi
 
 agent-clone:
 	if [ ! -d puppet-agent ]; then \
