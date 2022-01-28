@@ -59,6 +59,6 @@ setup: vanagon-clone runtime-clone agent-clone ## Clone the projects needed to b
 package: setup runtime agent ## Build the whole agent package and place it locally
 	mv puppet-agent/output/deb ./pkg
 
-fluffy:
-	@echo "Everything is fluffy"
+validate-remote: ## Ensure you can connect to $(REMOTE_HOST)
+	@echo "Validating connection to $(REMOTE_HOST)"
 	ssh -o StrictHostKeyChecking=no root@$(REMOTE_HOST) uptime
