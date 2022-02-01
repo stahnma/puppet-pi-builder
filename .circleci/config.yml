@@ -2,15 +2,13 @@ version: 2.1
 workflows:
   testing:
     jobs:
-      - runner-test
+      - build-puppet-agent-armhf
 jobs:
-  runner-test:
+  build-puppet-agent-armhf:
     machine: true
     resource_class: stahnma/vanagon-builder
     steps:
       - checkout
-      - run: pwd
-      - run: ls
       - run: echo "Attempting a remote vanagon build"
       - run: time make package
       - store_artifacts:
