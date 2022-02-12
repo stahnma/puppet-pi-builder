@@ -44,7 +44,7 @@ clean-remote: ## Clean remote machine you're building on
 
 vanagon-clone:
 	if [ ! -d vanagon ]; then \
-		git clone -o stahnma https://github.com/stahnma/vanagon && cd vanagon && git checkout ruby3  && bundle ; fi
+		git clone -o puppetlabs https://github.com/puppetlabs/vanagon && cd vanagon && bundle ; fi
 
 runtime-clone:
 	if [ ! -d puppet-runtime ]; then \
